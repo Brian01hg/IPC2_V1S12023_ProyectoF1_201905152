@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cines>
+	<cine>
+		<nombre>Cinemas</nombre>
+		<salas>
+			<sala>
+				<numero>201905152_1</numero>
+				<asientos>200</asientos>
+			</sala>
+			<sala>
+				<numero>201905152_2</numero>
+				<asientos>100</asientos>
+			</sala>
+		</salas>
+	</cine>
+</cines>

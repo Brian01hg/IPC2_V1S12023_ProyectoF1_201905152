@@ -25,29 +25,39 @@ class Lista_usuarios:
             aux.siguiente = self.primero
             self.primero = aux
 
-    def eliminar_inicio(self):
-        if self.vacia():
-            print("No hay usuarios registrados")
-        else:
-            self.primero = self.primero.siguiente
-
-    def eliminar_final(self):
+    def eliminarPorCorreo(self, correo):
         if self.vacia():
             print("No hay usuarios registrados")
         else:
             aux = self.primero
-            while aux.siguiente.siguiente != None:
+            while aux != None:
+                if aux.correo == correo:
+                    if aux == self.primero:
+                        self.primero = aux.siguiente
+                        aux.siguiente = None
+                        break
+                    else:
+                        aux2.siguiente = aux.siguiente
+                        aux.siguiente = None
+                        break
+                aux2 = aux
                 aux = aux.siguiente
-            aux.siguiente = None
+                if aux == self.primero:
+                    break
     
-    def eliminar_posicion(self, posicion):
+    def ModificarPorCorreo(self, correo, nombre, apellido, contraseña, telefono):
         if self.vacia():
             print("No hay usuarios registrados")
         else:
             aux = self.primero
-            for i in range(posicion-1):
+            while aux != None:
+                if aux.correo == correo:
+                    aux.nombre = nombre
+                    aux.apellido = apellido
+                    aux.contraseña = contraseña
+                    aux.telefono = telefono
+                    break
                 aux = aux.siguiente
-            aux.siguiente = aux.siguiente.siguiente
     
     def mostrar(self):
         aux = self.primero
@@ -70,18 +80,7 @@ class Lista_usuarios:
                 aux = aux.siguiente
         return None
     
-    def modificar(self, correo, nombre, apellido, contraseña, telefono):
-        aux = self.primero
-        while aux != None:
-            if aux.correo == correo:
-                aux.nombre = nombre
-                aux.apellido = apellido
-                aux.contraseña = contraseña
-                aux.telefono = telefono
-                return True
-            else:
-                aux = aux.siguiente
-        return False
+
     
     def Inicio_Session(self, correo, contraseña):
         aux = self.primero
@@ -121,7 +120,7 @@ class Lista_usuarios:
             aux = aux.siguiente
         xml = document.toprettyxml(indent='\t', newl='\n', encoding='utf-8') 
         xml = xml.decode('utf-8')
-        Salida = open('Salida.xml', 'w')
+        Salida = open('Salida_Usuarios.xml', 'w')
         Salida.write(xml)
         Salida.close()
 

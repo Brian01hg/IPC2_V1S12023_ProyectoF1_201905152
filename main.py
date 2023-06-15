@@ -1,50 +1,31 @@
-from xml.dom import minidom
 from Lista_usuarios import Lista_usuarios
-from Lista_Circular import Lista_pelicula
-from Lista_Doble import ListaSalas
-def cargar_salas_desde_xml(lista_salas, archivo_xml):
-    try:
-        doc = minidom.parse(archivo_xml)
-        salas = doc.getElementsByTagName("sala")
-
-        for sala in salas:
-            nombre = sala.getElementsByTagName("nombre")[0].firstChild.data
-            numero = sala.getElementsByTagName("numero")[0].firstChild.data
-            asientos = int(sala.getElementsByTagName("asientos")[0].firstChild.data)
-
-            lista_salas.agregar_inicio(nombre, numero, asientos)
-
-    except FileNotFoundError:
-        print(f"El archivo {archivo_xml} no se encontró.")
-    except Exception as e:
-        print("Ocurrió un error al cargar el archivo XML:", str(e))
-
-cargar_salas_desde_xml(ListaSalas, "salas_cine.xml")
-
+from Lista_Circular import ListaDoblementeCircularCategoria
+from ListaDoble import ListaDobleCines
+cines = ListaDobleCines()
 lista = Lista_usuarios()
-licas = Lista_pelicula()
-listasalas = ListaSalas()
-
+licas = ListaDoblementeCircularCategoria()
+global numero_licas
+contador_categorias = 0
 lista.agregar_final("Administrador", "Brian", "Hernandez", "brian@gmail.com" , "1234", "12345678")
-licas.agregar_final("Terror", "El conjuro", "James Wan", "2013", "12/12/2020", "12:00")
-licas.agregar_final("Terror", "El conjuro 2", "James Wan", "2016", "12/12/2020", "12:00")
-licas.agregar_final("Terror", "El conjuro 3", "James Wan", "2019", "12/12/2020", "12:00")
-licas.agregar_final("Terror", "El conjuro 4", "James Wan", "2022", "12/12/2020", "12:00")
+licas.agregar_final("Terror, Conjuro 2, James Wan, 2016, 19/06/2023, 16:00")
 while True:
-    print("===== MENÚ =====")
-    print("1. Inicio de secion")
-    print("2. Mostrar usuarios")
-    print("3. Registrar usuarios")
-    print("4. Ver las peliculas")
-    print("5. Ver las salas")
-    print("6.Comprar boletos")
-    print("7. Salir")
-
+    # Segun las opciones de abajo en los elif, corregir el menu
+    print("1. Iniciar sesión")
+    print("2. Ver usarios XML")
+    print("3. Agregar usuario")
+    print("4. Modificar usuarios")
+    print("5. Eliminar usuario")
+    print("6. Mostrar Peliculas")
+    print("7. Agregar Pelicula")
+    print("8. Eliminar Peliculas")
+    print("9. Modificar Peliculas")
+    print("10. Mostrar Peliculas xml")
+    print("11. Agregar Cine")
+    print("12. Mostrar salas xml")
+    print("13. Salir")
+    
     opcion = input("Selecciona una opción: ")
-
     if opcion == "1":
-        #Inicio de sesion
-
         correo = input("Ingrese su correo: ")
         contraseña = input("Ingrese su contraseña: ")
         if lista.Inicio_Session(correo, contraseña):
@@ -52,32 +33,80 @@ while True:
         else:
             print("Correo o contraseña incorrectos")
     elif opcion == "2":
-        #Ver los usuarios registrados
         lista.EscribirArchivo()
     elif opcion == "3":
-        #Registro de usuarios
         nombre = input("Ingrese su nombre: ")
         apellido = input("Ingrese su apellido: ")
         correo = input("Ingrese su correo: ")
         contraseña = input("Ingrese su contraseña: ")
         telefono = input("Ingrese su telefono: ")
         lista.agregar_final("Cliente" ,nombre, apellido, correo, contraseña, telefono)
-    elif opcion == "4":
-        #Ver las peliculas
-        licas.Mostrar()
+    elif opcion =="4":
+        print("Modificar Usuario")
+        nombre = input("Ingrese su nombre: ")
+        apellido = input("Ingrese su apellido: ")
+        correo = input("Ingrese su correo: ")
+        contraseña = input("Ingrese su contraseña: ")
+        telefono = input("Ingrese su telefono: ")
+        lista.ModificarPorCorreo(correo, nombre, apellido, contraseña, telefono)
+        print("Usuario modificado con exito")
     elif opcion == "5":
-        #ver las salas 
-        nombre = input("Ingrese el nombre de la sala: ")
-        numero = (input("Ingrese el número de la sala: "))
-        asientos = (input("Ingrese el número de asientos: "))
-        listasalas.agregar_final(nombre, numero, asientos)
-        print("Sala agregada al final.")
-        
+        print("Eliminar Usuario")
+        correo = input("Ingrese el correo del usuario: ")
+        lista.eliminarPorCorreo(correo)
+        print("Usuario eliminado con exito")
     elif opcion == "6":
-        listasalas.escribir_archivo("salas_cine.xml")
-
+        licas.Mostrar()
     elif opcion == "7":
+        print("Agregar Pelicula")
+        categoria = input("Ingrese la categoria de la pelicula: ")
+        licas.agregar_final(categoria)
+        contador_categorias = contador_categorias + 1
+        numero_de_peliculas_a_agregar = int(input("Ingrese el numero de peliculas a agregar: "))
+        numero_licas = numero_de_peliculas_a_agregar
+        for i in range(numero_de_peliculas_a_agregar):
+            titulo = input("Ingrese el titulo de la pelicula: ")
+            director = input("Ingrese el nombre del director: ")
+            año = input("Ingrese el año de la pelicula: ")
+            fecha = input("Ingrese la fecha de la pelicula: ")
+            hora = input("Ingrese la hora de la pelicula: ")
+            licas.AgregarPelicula(categoria,titulo, director, año, fecha, hora)
+            print("Pelicula agregada con exito")
+        print("Pelicula agregada con exito")
+    elif opcion == "8":
+        print("Eliminar Pelicula")
+        nombre = input("Ingrese el nombre de la pelicula: ")
+        licas.EliminarCategoria(nombre)
+        print("Pelicula eliminada con exito")
+    elif opcion == "9":
+        print("Modificar Pelicula")
+        nombre = input("Ingrese el nombre de la pelicula: ")
+        director = input("Ingrese el nombre del director: ")
+        año = input("Ingrese el año de la pelicula: ")
+        fecha = input("Ingrese la fecha de la pelicula: ")
+        hora = input("Ingrese la hora de la pelicula: ")
+        categoria = input("Ingrese la categoria de la pelicula: ")
+        titulo = input("Ingrese el titulo de la pelicula: ")
+        licas.ModificarPelicula(nombre, categoria, titulo, director, año, fecha, hora)
+        print("Pelicula modificada con exito")    
+    elif opcion == "10":
+        print("Escribir archivo de peliculas")
+        licas.EscribirXmlConBreak(numero_licas,contador_categorias)
+    elif opcion == "11":
+        print("Agregar Cine")
+        nombre = input("Ingrese el nombre del cine: ")
+        cines.append(nombre)
+        print("Cine agregado con exito")
+        numeros_de_salas_a_agregar = input("Ingrese el numero de salas a agregar: ")
+        for i in range(int(numeros_de_salas_a_agregar)):
+            numero = input("Ingrese el numero de la sala: ")
+            asientos = input("Ingrese el numero de asientos: ")
+            cines.AgregarSala(nombre, numero, asientos)
+            print("Sala agregada con exito")
+    elif opcion == "12":
+        cines.EscribirArchivo()
+    elif opcion == "13":
         print("Feliz dia")
-        break    
+        break
     else:
         print("Opción inválida. Por favor, selecciona una opción válida.")

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<usuarios>
+	<usuario>
+		<nombre>Brian</nombre>
+		<apellido>Hernandez</apellido>
+		<correo>brian@gmail.com</correo>
+		<telefono>12345678</telefono>
+		<rol>Administrador</rol>
+		<password>1234</password>
+	</usuario>
+	<usuario>
+		<nombre>susan</nombre>
+		<apellido>gil</apellido>
+		<correo>jaja</correo>
+		<telefono>313131</telefono>
+		<rol>Cliente</rol>
+		<password>123</password>
+	</usuario>
+</usuarios>

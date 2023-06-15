@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<categorias>
+	<categoria>
+		<nombre>Terror</nombre>
+		<peliculas>
+			<pelicula>
+				<titulo>zxc</titulo>
+				<director>zxc</director>
+				<anio>zxc</anio>
+				<fecha>zxc</fecha>
+				<hora>zxc</hora>
+			</pelicula>
+		</peliculas>
+	</categoria>
+</categorias>

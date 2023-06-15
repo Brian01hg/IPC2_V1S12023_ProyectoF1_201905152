@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<categorias>
+	<categoria>
+		<nombre>Terror</nombre>
+		<pelicula>
+			<titulo>El conjuro</titulo>
+			<director>James Wan</director>
+			<anio>2013</anio>
+			<fecha>12/12/2020</fecha>
+			<hora>12:00</hora>
+		</pelicula>
+		
+	</categoria>
+	<categoria>
+		<nombre>asd</nombre>
+		<pelicula>
+			<titulo>asd</titulo>
+			<director>asd</director>
+			<anio>asd</anio>
+			<fecha>asd</fecha>
+			<hora>asd</hora>
+		</pelicula>
+	</categoria>
+	<categoria>
+		<nombre>Terror</nombre>
+		<pelicula>
+			<titulo>asd</titulo>
+			<director>p</director>
+			<anio>p</anio>
+			<fecha>p</fecha>
+			<hora>p</hora>
+		</pelicula>
+	</categoria>
+</categorias>
