@@ -1,1 +1,4 @@
+Brian Antonio Hernandez Gil
+201905152
+IPC2 P
 # IPC2_V1S12023_ProyectoF1_201905152
